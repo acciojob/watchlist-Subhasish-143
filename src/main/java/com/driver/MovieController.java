@@ -15,7 +15,7 @@ public class MovieController {
     MovieService ms;
 
     @PostMapping("/add-movie")
-    ResponseEntity addMovie(@RequestBody() Movie movie) {
+    public ResponseEntity addMovie(@RequestBody() Movie movie) {
         try{
             ms.addMovie(movie);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
@@ -25,7 +25,7 @@ public class MovieController {
         }
     }
     @PostMapping("/add-director")
-    ResponseEntity addDirector(@RequestBody() Director director) {
+    public ResponseEntity addDirector(@RequestBody() Director director) {
         try {
             ms.addDirector(director);
             return new ResponseEntity<>("Success",HttpStatus.CREATED);
@@ -35,7 +35,7 @@ public class MovieController {
         }
     }
     @PutMapping("/add-movie-director-pair")
-    ResponseEntity addMovieDirectorPair(@RequestParam String movie,@RequestParam String directorName) {
+    public ResponseEntity addMovieDirectorPair(@RequestParam String movie,@RequestParam String directorName) {
         try {
             ms.addMovieAndDirector(movie, directorName);
             return new ResponseEntity<>("Success",HttpStatus.CREATED);
@@ -45,7 +45,7 @@ public class MovieController {
         }
     }
     @GetMapping("/get-movie-by-name/{name}")
-    ResponseEntity getMovieByName(@PathVariable String name) {
+    public ResponseEntity getMovieByName(@PathVariable String name) {
         try {
             return new ResponseEntity<>(ms.getMovieByName(name),HttpStatus.CREATED);
         }
@@ -54,7 +54,7 @@ public class MovieController {
         }
     }
     @GetMapping("/get-director-by-name/{name}")
-    ResponseEntity getDirectorByName(@PathVariable String name) {
+    public ResponseEntity getDirectorByName(@PathVariable String name) {
         try {
             return new ResponseEntity<>(ms.getDirectorByName(name),HttpStatus.CREATED);
         }
@@ -63,7 +63,7 @@ public class MovieController {
         }
     }
     @GetMapping("/get-movies-by-director-name/{director}")
-    ResponseEntity getMoviesByDirectorName(@PathVariable String director) {
+    public ResponseEntity getMoviesByDirectorName(@PathVariable String director) {
         try {
             return new ResponseEntity<>(ms.getMoviesNameByDirectorName(director),HttpStatus.CREATED);
         }
@@ -72,7 +72,7 @@ public class MovieController {
         }
     }
     @GetMapping("/get-all-movies")
-    ResponseEntity findAllMovies() {
+    public ResponseEntity findAllMovies() {
         try {
             return new ResponseEntity<>(ms.getAllMovies(),HttpStatus.CREATED);
         }
@@ -81,12 +81,12 @@ public class MovieController {
         }
     }
     @DeleteMapping("/delete-director-by-name")
-    ResponseEntity deleteDirectorByName(@RequestParam String director) {
+    public ResponseEntity deleteDirectorByName(@RequestParam String director) {
         ms.deleteDirectorAndHisMovie(director);
         return new ResponseEntity("Success",HttpStatus.CREATED);
     }
     @DeleteMapping("/delete-all-directors")
-    ResponseEntity deleteAllDirectors() {
+    public ResponseEntity deleteAllDirectors() {
         ms.deleteAllMoviesInMap();
         return new ResponseEntity<>("Success",HttpStatus.CREATED);
     }
