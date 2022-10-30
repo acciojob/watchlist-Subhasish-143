@@ -10,31 +10,31 @@ public class MovieService {
     @Autowired
     MovieRepository mr;
 
-    void addMovie(Movie movie) {
+    public void addMovie(Movie movie) {
         mr.addMovieToMovieList(movie);
     }
-    void addDirector(Director director) {
+    public void addDirector(Director director) {
         mr.addDirectorToDirectorList(director);
     }
-    void addMovieAndDirector(String movie,String director) {
+    public void addMovieAndDirector(String movie,String director) {
         mr.addToMap(movie,director);
     }
-    Movie getMovieByName(String name) {
+    public Movie getMovieByName(String name) {
         return mr.getMovieByName(name);
     }
-    Director getDirectorByName(String name) {
+    public Director getDirectorByName(String name) {
         return mr.getDirectorByName(name);
     }
-    List<String> getMoviesNameByDirectorName(String director) {
+    public List<String> getMoviesNameByDirectorName(String director) {
         return mr.getAllMovieByADirector(director);
     }
-    List<String> getAllMovies() {
+    public List<String> getAllMovies() {
         return mr.getAllMovie();
     }
-    void deleteDirectorAndHisMovie(String director) {
+    public void deleteDirectorAndHisMovie(String director) {
         mr.deleteDirectorAndHisMovies(director);
     }
-    void deleteAllMoviesInMap() {
+    public void deleteAllMoviesInMap() {
         mr.deleteAllTheLinkWithMap();
     }
 }
