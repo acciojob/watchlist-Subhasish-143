@@ -9,13 +9,13 @@ public class MovieRepository {
     Set<Movie> movieList = new HashSet<>();
     Map<Director,List<String>> directorsList = new HashMap<>();// <director , movie name>
 
-    void addMovieToMovieList(Movie movie) {
+    public void addMovieToMovieList(Movie movie) {
         movieList.add(movie);
     }
-    void addDirectorToDirectorList(Director director) {
+    public void addDirectorToDirectorList(Director director) {
         directorsList.put(director,new ArrayList<>());
     }
-    void addToMap(String movie,String director) {
+    public void addToMap(String movie,String director) {
         for(Director d : directorsList.keySet()) {
             if (d.getName().equals(director)) {
                 List<String>listMovie = directorsList.get(d);
@@ -24,14 +24,14 @@ public class MovieRepository {
             }
         }
     }
-    List<String> getAllMovie() {
+    public List<String> getAllMovie() {
         List<String> moviesToWatch = new ArrayList<>();
         for(Movie m : movieList) {
             moviesToWatch.add(m.getName());
         }
         return moviesToWatch;
     }
-    List<String> getAllMovieByADirector(String name) {
+    public List<String> getAllMovieByADirector(String name) {
         for(Director d : directorsList.keySet()) {
             if (d.getName().equals(name)) {
                 return directorsList.get(d);
@@ -39,7 +39,7 @@ public class MovieRepository {
         }
         return new ArrayList<>();
     }
-    void deleteAllTheLinkWithMap() {
+    public void deleteAllTheLinkWithMap() {
         for(Director d : directorsList.keySet()) {
             for(String name : directorsList.get(d)) {
                 movieList.removeIf(m -> m.getName().equals(name));
@@ -47,7 +47,7 @@ public class MovieRepository {
         }
         directorsList.clear();
     }
-    void deleteDirectorAndHisMovies(String name) {
+    public void deleteDirectorAndHisMovies(String name) {
         for(Director d : directorsList.keySet()) {
             if (d.getName().equals(name)) {
                 for (String movie : directorsList.get(d)) {
@@ -61,7 +61,7 @@ public class MovieRepository {
             }
         }
     }
-    Movie getMovieByName(String name) {
+    public Movie getMovieByName(String name) {
         for(Movie m: movieList) {
             if (m.getName().equals(name)) {
                 return m;
@@ -69,7 +69,7 @@ public class MovieRepository {
         }
         return null;
     }
-    Director getDirectorByName(String Name) {
+    public Director getDirectorByName(String Name) {
         for(Director d:directorsList.keySet()) {
             if (d.getName().equals(Name)) {
                 return d;
